@@ -36,58 +36,81 @@ function pdev_plugin_option_page() {
 // Register and define the settings
 add_action('admin_init', 'pdev_plugin_admin_init');
  
+// function pdev_plugin_admin_init(){
+ 
+//        //define the setting args
+//        $args = array(
+//            'type' => 'string', 
+//            'sanitize_callback' => 'pdev_plugin_validate_options',
+//            'default' => NULL
+//        );
+ 
+ 
+//     //register our settings
+//     register_setting( 'pdev_plugin_options', 'pdev_plugin_options', $args );
+    
+//     //add a settings section
+//     add_settings_section( 
+//         'pdev_plugin_main', 
+//         'PDEV Plugin Settings',
+//         'pdev_plugin_section_text', 
+//         'pdev_plugin' 
+//     );
+    
+//     //create our settings field for name
+//     add_settings_field( 
+//         'pdev_plugin_name', 
+//         'Your Name',
+//         'pdev_plugin_setting_name', 
+//         'pdev_plugin', 
+//         'pdev_plugin_main' 
+//     );
+ 
+    
+//     //create our settings field for favorite holiday
+//     add_settings_field( 
+//         'pdev_plugin_fav_holiday', 
+//         'Favorite Holiday',
+//         'pdev_plugin_setting_fav_holiday', 
+//         'pdev_plugin', 
+//         'pdev_plugin_main' 
+//     );
+ 
+//     //create our settings field for beast mode
+//     add_settings_field( 
+//         'pdev_plugin_beast_mode',
+//         'Enable Beast Mode?',
+//         'pdev_plugin_setting_beast_mode',
+//         'pdev_plugin',
+//         'pdev_plugin_main'
+//     );
+ 
+// }
+
 function pdev_plugin_admin_init(){
- 
-       //define the setting args
-       $args = array(
-           'type' => 'string', 
-           'sanitize_callback' => 'pdev_plugin_validate_options',
-           'default' => NULL
-       );
- 
- 
-    //register our settings
-    register_setting( 'pdev_plugin_options', 'pdev_plugin_options', $args );
-    
-    //add a settings section
-    add_settings_section( 
-        'pdev_plugin_main', 
+    $args = array(
+        'type'              => 'string', 
+        'sanitize_callback' => 'pdev_plugin_validate_options',
+        'default'           => NULL
+    );
+     
+    register_setting( 'reading', 'pdev_plugin_options', $args );
+        
+    add_settings_section(
+        'pdev_plugin_options',
         'PDEV Plugin Settings',
-        'pdev_plugin_section_text', 
-        'pdev_plugin' 
+        'pdev_plugin_section_text',
+        'reading'
     );
-    
-    //create our settings field for name
-    add_settings_field( 
-        'pdev_plugin_name', 
+        
+    add_settings_field(
+        'pdev_plugin_text_string',
         'Your Name',
-        'pdev_plugin_setting_name', 
-        'pdev_plugin', 
-        'pdev_plugin_main' 
+        'pdev_plugin_setting_name',
+        'reading',
+        'pdev_plugin_options'
     );
- 
-    
-    //create our settings field for favorite holiday
-    add_settings_field( 
-        'pdev_plugin_fav_holiday', 
-        'Favorite Holiday',
-        'pdev_plugin_setting_fav_holiday', 
-        'pdev_plugin', 
-        'pdev_plugin_main' 
-    );
- 
-    //create our settings field for beast mode
-    add_settings_field( 
-        'pdev_plugin_beast_mode',
-        'Enable Beast Mode?',
-        'pdev_plugin_setting_beast_mode',
-        'pdev_plugin',
-        'pdev_plugin_main'
-    );
- 
 }
-
-
 // Display and select the favorite holiday select field
 function pdev_plugin_setting_fav_holiday() {
  
